@@ -12,14 +12,19 @@ import java.io.File;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
-public class Dragons{
-@XmlElement(name = "dragon")
+public class Dragons {
+    @XmlElement(name = "dragon")
     public static Hashtable<Integer, Dragon> dragonCollection = new Hashtable<Integer, Dragon>();
     private final ZonedDateTime creationDate;
+
     public Dragons() {
         creationDate = ZonedDateTime.now();
     }
-    public static Hashtable<Integer, Dragon> getCollection(){return dragonCollection;}
+
+    public static Hashtable<Integer, Dragon> getCollection() {
+        return dragonCollection;
+    }
+
     Dragons dragons;
 
     public void uploadData(String path) {
@@ -37,12 +42,11 @@ public class Dragons{
             et.printStackTrace();
         } catch (FileNotFoundException et) {
             et.printStackTrace();
+        } finally {
+            // CorrectDataReader("Data.xml");
+            System.out.println(dragonCollection.toString());
         }
-        finally {
-        // CorrectDataReader("Data.xml");
-        System.out.println(dragonCollection.toString());
-        }
-}
+    }
 
     /**
      * Очистка коллекции

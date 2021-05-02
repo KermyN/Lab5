@@ -72,7 +72,7 @@ public class Dragon {
     }
 
     public java.time.ZonedDateTime getCreationDate() {
-        return creationDate;
+        return ZonedDateTime.now();
     }
 
     public void setId(int ID) {
