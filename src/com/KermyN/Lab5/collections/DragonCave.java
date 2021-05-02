@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 /*
  * Представляет пещеру дракона с сокровищами
  */
-@XmlRootElement
+
 public class DragonCave {
     private double numberOfTreasures; //Значение поля должно быть больше 0
 

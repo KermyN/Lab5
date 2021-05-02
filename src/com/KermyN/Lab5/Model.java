@@ -21,7 +21,7 @@ public class Model {
         }
         {
             collection.uploadData(path);
-            // dragonHashtable.putAll(getId,fi);
+            System.out.println(collection.toString());
 
         }
     }

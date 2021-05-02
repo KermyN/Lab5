@@ -1,7 +1,7 @@
 package com.KermyN.Lab5.collections;
 
 import javax.xml.bind.annotation.*;
-@XmlRootElement(name = "coordinates")
+
 @XmlAccessorType(XmlAccessType.FIELD)
 
 /*

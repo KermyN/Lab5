@@ -8,6 +8,6 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        Presenter manipulator = new Presenter(new Model("D:/ITMO/Proga/Lab5/src/Data.xml"), System.in);
+        Model manipulator = new Model("D:/Прога/Lab5/src/Data.xml");
     }
 }

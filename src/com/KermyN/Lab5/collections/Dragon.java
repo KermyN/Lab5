@@ -3,21 +3,28 @@ package com.KermyN.Lab5.collections;
 import javax.xml.bind.annotation.*;
 import java.time.ZonedDateTime;
 
-@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class Dragon {
+    @XmlElement
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    @XmlElement
     private String name; //Поле не может быть null, Строка не может быть пустой
     @XmlElement(name = "creationDate")
     private String dateTimeString;
     @XmlTransient
     private java.time.ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически\
+    @XmlElement
     private Coordinates coordinates; //Поле не может быть null
+    @XmlElement
     private int age; //Значение поля должно быть больше 0
+    @XmlElement
     private Color color; //Поле может быть null
+    @XmlElement
     private DragonType type; //Поле может быть null
+    @XmlElement
     private DragonCharacter character; //Поле не может быть null
+    @XmlElement
     private DragonCave cave; //Поле не может быть null
 
     public Dragon() {
@@ -28,11 +35,11 @@ public class Dragon {
         this.name = name;
         this.coordinates = coordinates;
         this.age = age;
+        this.creationDate = creationDate;
         this.color = Color;
         this.type = type;
         this.character = character;
         this.cave = cave;
-        this.creationDate = creationDate;
     }
 
     public Integer getRandNumber(int min, int max) {
@@ -86,16 +93,16 @@ public class Dragon {
 
     @Override
     public String toString() {
-        return "com.KermyN.Lab5.collections.Dragon{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", coordinates='" + coordinates + '\'' +
-                ", color='" + color + '\'' +
-                ", type='" + type + '\'' +
-                ", character='" + character + '\'' +
-                ", cave='" + cave + '\'' +
-                ", creationDate='" + creationDate + '\'' +
+        return "Dragon{" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", age=" + getAge() +
+                ", coordinates='" + getCoordinates() + '\'' +
+                ", color='" + getColor() + '\'' +
+                ", type='" + getType() + '\'' +
+                ", character='" + getCharacter() + '\'' +
+                ", cave='" + getCave() + '\'' +
+                ", creationDate='" + getCreationDate() + '\'' +
                 '}';
     }
 }
