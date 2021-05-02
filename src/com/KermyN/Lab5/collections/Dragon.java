@@ -3,7 +3,7 @@ package com.KermyN.Lab5.collections;
 import javax.xml.bind.annotation.*;
 import java.time.ZonedDateTime;
 
-@XmlRootElement(name = "Dragon")
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class Dragon {
@@ -35,7 +35,7 @@ public class Dragon {
         this.creationDate = creationDate;
     }
 
-    private int getRandNumber(int min, int max) {
+    public Integer getRandNumber(int min, int max) {
         return (int) (Math.random() * (max - min + 1) + min);
     }
 

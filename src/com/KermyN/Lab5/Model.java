@@ -9,7 +9,7 @@ import java.util.*;
 public class Model {
     private Date initDate;
     protected File currentCollection;
-    Dragons collection = new Dragons();
+    private final Dragons collection = new Dragons();
     protected static Map<String, String> commandList = new HashMap<>();
 
     Model(String path) {
@@ -26,18 +26,7 @@ public class Model {
         }
     }
 
-    /*private static com.KermyN.Lab5.collections.Dragon uploadData(String path) {
-        try {
-            // создаем объект JAXBContext - точку входа для JAXB
-            JAXBContext jaxbContext = JAXBContext.newInstance(com.KermyN.Lab5.collections.Dragon.class);
-            Unmarshaller un = jaxbContext.createUnmarshaller();
-            return (com.KermyN.Lab5.collections.Dragon) un.unmarshal(new File(path));
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-     */
+
     public void help() {
         System.out.println("Тут должна быть справка");
     }

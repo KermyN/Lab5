@@ -7,7 +7,7 @@
 			<x>2</x>
 			<y>-2</y>
 		</coordinates>
-		<creationDate>09.11.2001</creationDate>
+		<creationDate>09-11-2001T13:45:45</creationDate>
 		<age>100500</age>
 		<color>RED</color>
 		<type>WATER</type>
@@ -23,7 +23,7 @@
 			<x>35</x>
 			<y>23</y>
 		</coordinates>
-		<creationDate>09.11.2001</creationDate>
+		<creationDate>09-11-2001T13:45:45</creationDate>
 		<age>10</age>
 		<color>YELLOW</color>
 		<type>AIR</type>
@@ -39,7 +39,7 @@
 			<x>2</x>
 			<y>-2</y>
 		</coordinates>
-		<creationDate>09.11.2001</creationDate>
+		<creationDate>09-11-2001T13:45:45</creationDate>
 		<age>100500</age>
 		<color>RED</color>
 		<type>WATER</type>
