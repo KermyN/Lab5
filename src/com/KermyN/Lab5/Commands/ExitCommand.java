@@ -1,12 +1,12 @@
 package com.KermyN.Lab5.Commands;
-import com.LeoMitinskyi.lab5.Engine;
+import com.KermyN.Lab5.Model;
 public class ExitCommand extends Command{
-    public ExitCommand(Engine engine) {
-        super(engine);
+    public ExitCommand(Model model) {
+        super(model);
     }
     @Override
     public void execute() {
-        engine.stop();
+        model.stop();
     }
 
     @Override

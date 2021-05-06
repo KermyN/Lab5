@@ -10,6 +10,14 @@ public class IsDigit {
             return false;
         }
     }
+    public static boolean islong(String s) throws NumberFormatException {
+        try {
+            Long.parseLong(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
     public static boolean isDouble(String s) throws NumberFormatException {
         try {

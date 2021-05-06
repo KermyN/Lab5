@@ -1,9 +1,9 @@
 package com.KermyN.Lab5.Commands;
-import com.LeoMitinskyi.lab5.Engine;
+import com.KermyN.Lab5.Model;
 
 public class SaveCommand extends Command{
-    public SaveCommand(Engine engine) {
-        super(engine);
+    public SaveCommand(Model model) {
+        super(model);
     }
     @Override
     public void execute(){

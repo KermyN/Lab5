@@ -10,7 +10,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class DragonCave {
     private double numberOfTreasures; //Значение поля должно быть больше 0
-
+public DragonCave(double numberOfTreasures){
+    this.numberOfTreasures=numberOfTreasures;
+}
 
     public double getNumberOfTreasures() {
         return numberOfTreasures;

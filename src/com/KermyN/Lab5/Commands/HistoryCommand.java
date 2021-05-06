@@ -1,16 +1,16 @@
 package com.KermyN.Lab5.Commands;
-import com.LeoMitinskyi.lab5.Engine;
+import com.KermyN.Lab5.Model;
 
 import java.util.List;
 import java.util.ListIterator;
 
 public class HistoryCommand extends Command{
-    public HistoryCommand(Engine engine) {
-        super(engine);
+    public HistoryCommand(Model model) {
+        super(model);
     }
     @Override
     public void execute(){
-        List<String> history = engine.getHistory();
+        List<String> history = model.getHistory();
         int startIndex = Math.max(0, history.size() - 12);
         ListIterator<String> iterator = history.listIterator(startIndex);
         while (iterator.hasNext()) {

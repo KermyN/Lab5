@@ -1,8 +1,8 @@
 package com.KermyN.Lab5.Commands;
-import com.LeoMitinskyi.lab5.Engine;
+import com.KermyN.Lab5.Model;
 public class InfoCommand extends Command{
-    public InfoCommand(Engine engine) {
-        super(engine);
+    public InfoCommand(Model model) {
+        super(model);
     }
     @Override
     public void execute() {
