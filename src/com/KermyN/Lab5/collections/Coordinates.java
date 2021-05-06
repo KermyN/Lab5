@@ -13,7 +13,7 @@ public class Coordinates {
     private long y;
 
     Coordinates() {}
-    Coordinates(Integer x, long y) {
+    public Coordinates(Integer x, long y) {
         this.x = x;
         this.y = y;
     }

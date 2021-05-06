@@ -1,8 +1,8 @@
 package com.KermyN.Lab5.Commands;
 import com.KermyN.Lab5.Model;
 public class ClearCommand extends Command{
-    public ClearCommand(Engine engine) {
-        super(engine);
+    public ClearCommand(Model model) {
+        super(model);
     }
     @Override
     public void execute() {

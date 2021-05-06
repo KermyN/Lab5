@@ -3,7 +3,7 @@ package com.KermyN.Lab5.Commands;
 import com.KermyN.Lab5.Model;
 import com.KermyN.Lab5.collections.*;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 public class AddCommand extends Command{
     public AddCommand(Model engine) {
@@ -12,28 +12,25 @@ public class AddCommand extends Command{
 
     @Override
     public void execute() throws IOException, NumberFormatException {
-        long id = System.currentTimeMillis() % Integer.MAX_VALUE;
+        int id = (int)(System.currentTimeMillis() % Integer.MAX_VALUE);
 
-        String name = ioManager.StringReader("Enter name:");
+        String name = ioManager.StringReader("Введите имя:");
 
-        Integer height = ioManager.IntegerReader("Enter height(it's should be more than zero):");
-        float x = ioManager.FloatReader("Enter x(962 is maximum):", 962f);
-        float y = ioManager.FloatReader("Enter y(214 is maximum)", 214f);
+        Integer age = ioManager.IntegerReader("Введите возраст");
+        Integer x = ioManager.IntegerReader("Введите координату x(>0):");
+        long y = ioManager.LongReader("Введите координату y(>0)");
 
-        LocalDate creationDate = LocalDate.now();
+        ZonedDateTime creationDate = ZonedDateTime.now();
 
-        Color eyeColor = ioManager.ColorReader("Enter eyeColor: {GREEN, " + "RED, " + "BLACK, " + "YELLOW, " + "BROWN;}");
-        Color hairColor = ioManager.ColorReader("Enter hairColor: {GREEN, " + "RED, " + "BLACK, " + "YELLOW, " + "BROWN;}");
-        Country nationality = ioManager.CountryReader("Enter country: {USA," + "SPAIN," + "INDIA," + "ITALY," + "JAPAN;}");
+        Color сolor = ioManager.ColorReader("Введите цвет дракона: {GREEN, " + "RED, " + "BLACK, " + "YELLOW, " + "BROWN;}");
+        DragonCharacter character = ioManager.CharacterReader("Введите характер дракона: {CUNNING," + "GOOD," + "FICKLE;}");
+        DragonType type = ioManager.TypeReader("Введите тип дракона: {UNDERGROUND," + "AIR," + "WATER," +"FIRE;}");
 
-        Long X = ioManager.LongReader("Enter X:");
-        double Y = ioManager.DoubleReader("Enter Y");
-        Float Z = ioManager.FloatReader("Enter Z");
+        double treasures = ioManager.DoubleReader("Введите количество сокровищ(>0):");
+        DragonCave cave = new DragonCave(treasures);
 
         Coordinates coordinates = new Coordinates(x,y);
-        Location location = new Location(X,Y,Z);
-
-        Person p = new Person(id,name,coordinates,creationDate,height,eyeColor,hairColor,nationality,location);
+        Dragon p = new Dragon(id,name, coordinates,creationDate,age,сolor,type,character,cave);
         collection.add(p);
         ioManager.writeLine("Object was added: " + p.toString());
     }

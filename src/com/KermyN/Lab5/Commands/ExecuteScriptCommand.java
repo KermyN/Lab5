@@ -1,17 +1,16 @@
-package com.LeoMitinskyi.lab5.Commands;
-import com.LeoMitinskyi.lab5.Engine;
+package com.KermyN.Lab5.Commands;
+import com.KermyN.Lab5.*;
 
 import javax.xml.bind.JAXBException;
 import java.io.*;
 import java.util.ArrayList;
 
 public class ExecuteScriptCommand extends Command{
-    public ExecuteScriptCommand(Engine engine) {
-        super(engine);
+    public ExecuteScriptCommand(Model model) {
+        super(model);
     }
     @Override
     public void execute() throws IOException, JAXBException {
-
         InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream("text.txt"));
         BufferedReader reader = new BufferedReader(inputStreamReader);
         String str;
@@ -22,7 +21,7 @@ public class ExecuteScriptCommand extends Command{
                 ioManager.writeLine(str);
             }}
         String[] commands = list.toArray(new String[0]);
-        engine.run(commands);
+        model.run(commands);
     }
 
     @Override

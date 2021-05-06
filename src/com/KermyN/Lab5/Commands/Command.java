@@ -2,6 +2,7 @@ package com.KermyN.Lab5.Commands;
 
 import com.KermyN.Lab5.Model;
 import com.KermyN.Lab5.IOManager;
+import com.KermyN.Lab5.collections.*;
 import com.KermyN.Lab5.collections.Dragon;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -9,14 +10,14 @@ import java.io.IOException;
  * Класс - заготовка для команд, определяет их поведение
  */
 public abstract class Command {
-    protected final Model engine;
+    protected final Model model;
     protected final IOManager ioManager;
-    protected final Dragon collection;
+    protected final Dragons collection;
 
-    public Command(Model engine) {
-        this.engine = engine;
-        this.ioManager = engine.getIOManager();
-        this.collection = engine.getCollection();
+    public Command(Model model) {
+        this.model = model;
+        this.ioManager = model.getIOManager();
+        this.collection = model.getCollection();
     }
     /**
      * метод, который непорседственно выполняет команду

@@ -1,7 +1,10 @@
 package com.KermyN.Lab5;
 
 import com.KermyN.Lab5.collections.Color;
+import com.KermyN.Lab5.collections.DragonCave;
 import com.KermyN.Lab5.collections.DragonCharacter;
+import com.KermyN.Lab5.collections.DragonType;
+
 import java.io.*;
 import static com.KermyN.Lab5.IsDigit.*;
 
@@ -10,14 +13,20 @@ public class IOManager {
     private final FileWriter FileWriter;
     private final InputStreamReader inputStreamReader;
 
-    public IOManager(){
-        inputStreamReader = new InputStreamReader(System.in);
-        FileWriter = new FileWriter("NewData.xml");
+    public IOManager() throws IOException{
+       // try {
+            inputStreamReader = new InputStreamReader(System.in);
+            FileWriter = new FileWriter("NewData.xml");
+        //}
+       // catch(IOException e){
+           // e.printStackTrace();
+         //   System.exit(0);
+       // }
     }
 
     public void write(String s) {
         try {
-            FileWriter.write(s.getBytes());
+            FileWriter.write(s);
             FileWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -67,7 +76,7 @@ public class IOManager {
     public Integer IntegerReader(String question) throws NumberFormatException, IOException {
         writeLine(question);
         String value = read();
-        while (value.trim().isEmpty() || !IsDigit.isInteger(value) || !(Integer.parseInt(value) > 0)) {
+        while (value.trim().isEmpty() || !IsDigit.isInteger(value)  || !(Integer.parseInt(value) > 0)) {
             writeLine("Invalid value");
             writeLine(question);
             value = read();
@@ -124,7 +133,7 @@ public class IOManager {
     public Long LongReader(String question) throws NumberFormatException, IOException {
         writeLine(question);
         String value = read();
-        while (value.trim().isEmpty() || !isLong(value)) {
+        while (value.trim().isEmpty() || !isFloat(value) || !(Long.parseLong(value) > 0)) {
             writeLine("Invalid value");
             writeLine(question);
             value = read();
@@ -138,7 +147,7 @@ public class IOManager {
     public Color ColorReader(String question) throws IllegalArgumentException,IOException{
         writeLine(question);
         String value = read();
-        while (value.trim().isEmpty() || (!value.equals("GREEN") && !value.equals("RED") && !value.equals("BROWN") && !value.equals("YELLOW") && !value.equals("BLACK"))) {
+        while (value.trim().isEmpty() || (!value.equals("ORANGE") && !value.equals("RED") && !value.equals("YELLOW"))) {
             writeLine("Invalid value");
             writeLine(question);
             value = read();
@@ -147,18 +156,31 @@ public class IOManager {
     }
 
     /**
-     * Метод для чтениния вводимых данных типа Country
-
-    public Country CountryReader(String question) throws IllegalArgumentException,IOException{
+     * Метод для чтениния вводимых данных типа DragonCharacter
+     */
+    public DragonCharacter CharacterReader(String question) throws IllegalArgumentException,IOException{
         writeLine(question);
         String value = read();
-        while (value.trim().isEmpty() || (!value.equals("USA") && !value.equals("SPAIN") && !value.equals("INDIA") && !value.equals("ITALY") && !value.equals("JAPAN"))) {
+        while (value.trim().isEmpty() || (!value.equals("FICKLE") && !value.equals("GOOD") && !value.equals("CUNNING"))) {
             writeLine("Invalid value");
             writeLine(question);
             value = read();
         }
-        return Country.valueOf(value);
+        return DragonCharacter.valueOf(value);
     }
+    /**
+     * Метод для чтениния вводимых данных типа Color
      */
+    public DragonType TypeReader(String question) throws IllegalArgumentException,IOException{
+        writeLine(question);
+        String value = read();
+        while (value.trim().isEmpty() || (!value.equals("WATER") && !value.equals("UNDERGROUND") && !value.equals("FIRE")&& !value.equals("AIR"))) {
+            writeLine("Invalid value");
+            writeLine(question);
+            value = read();
+        }
+        return DragonType.valueOf(value);
+    }
+
 }
 

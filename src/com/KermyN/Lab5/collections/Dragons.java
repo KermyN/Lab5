@@ -50,7 +50,6 @@ public class Dragons {
         try {
             System.out.println(dragonCollection.toString());
             DataCheck();
-            System.out.println(dragonCollection.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,6 +135,16 @@ public class Dragons {
         }
 
         return getCollection().toString();
+    }
+    public ZonedDateTime getInitializationDate() {
+        return creationDate;
+    }
+
+    /**
+     * Возвращает размер коллекции
+     */
+    public int getSize() {
+        return dragons.getSize();
     }
 }
 
