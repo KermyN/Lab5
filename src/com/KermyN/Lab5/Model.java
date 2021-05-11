@@ -1,35 +1,48 @@
 package com.KermyN.Lab5;
 
+import com.KermyN.Lab5.collections.CollectionWork;
 import com.KermyN.Lab5.collections.Dragons;
 import com.KermyN.Lab5.Commands.*;
 import javax.xml.bind.JAXBException;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
 public class Model {
-    private Date initDate;
-    protected File currentCollection;
-    private final Dragons collection = new Dragons();
+    private Dragons parsing = new Dragons();
     protected static Map<String, Command> commandList = new HashMap<>();
     private boolean stopFlag = false;
     private final IOManager ioManager = new IOManager();
     private final List<String> history = new LinkedList<>();
-
+    private CollectionWork collectionWork = new CollectionWork();
 
     Model(String path) throws IOException {
-       uploadFile(path);
+        parsing = uploadFile(path);
+        collectionWork = parsing.getCollectionWorker();
+
+        registerCommand(new HelpCommand(this));
+        registerCommand(new InfoCommand(this));
+        registerCommand(new SaveCommand(this));
+        registerCommand(new InsertCommand(this));
+        registerCommand(new HistoryCommand(this));
+        registerCommand(new ExecuteScriptCommand(this));
+        registerCommand(new ClearCommand(this));
+        registerCommand(new ExitCommand(this));
     }
 
+    /**
+     * Метод, запускающий цикл исполнения комманд, которые будут введены пользователем.
+     */
+    public void run() throws IOException, JAXBException{
+        while (!stopFlag) {
+            readAndExecuteCommand();
+        }
+    }
 
-    public void uploadFile(String path)throws IOException, FileNotFoundException{
-
+    public Dragons uploadFile(String path)throws IOException, FileNotFoundException{
         try {
             if (path == null) throw new FileNotFoundException();
-            collection.uploadData(path);
-            System.out.println(collection.toString());
-
+            return parsing.uploadData(path);
         } catch (FileNotFoundException ex) {
             System.out.println("Неверный путь");
             System.exit(1);
@@ -37,19 +50,17 @@ public class Model {
         catch (IOException e){
             e.printStackTrace();
         }
-
+return null;
     }
 
     public IOManager getIOManager() {
         return ioManager;
     }
-    public Dragons getCollection() {
-        return collection;
+    public CollectionWork getCollectionWork() {
+        return collectionWork;
     }
+    public Dragons getParser(){return parsing;}
 
-    public void help() {
-        System.out.println("Тут должна быть справка");
-    }
     /**
      * Метод, запускающий цикл исполнения комманд.
      * @param commands массив команд, которые нужно выполнить
@@ -58,6 +69,13 @@ public class Model {
         while (!stopFlag) {
             readAndExecuteCommands(commands);
         }
+    }
+    /**
+     * Метод, регистрирующий комманду.
+     * @param command Ссылка на экземпляр комманды.
+     */
+    private void registerCommand(Command command) {
+        commandList.put(command.getName(), command);
     }
     /**
      * Метод, осуществляющий чтение и исполнение очередной команды.
@@ -94,7 +112,7 @@ public class Model {
         for (String s : commands) {
             Command command = getCommandByName(s);
             if (command == null) {
-                ioManager.writeLine("Команда с указанным именем не найдена!");
+                ioManager.writeLine("Команда с указанным именем не найдена");
             } else {
                 command.execute();
                 ioManager.writeLine("");
@@ -106,6 +124,7 @@ public class Model {
      * Метод, прекращающий работу программы.
      */
     public void stop() {stopFlag = true; }
+
     public Collection<Command> getAllCommands() {
         return commandList.values();
     }

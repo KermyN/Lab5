@@ -2,17 +2,24 @@ package com.KermyN.Lab5.Commands;
 
 import com.KermyN.Lab5.Model;
 import com.KermyN.Lab5.collections.*;
+
 import java.io.IOException;
 import java.time.ZonedDateTime;
 
-public class AddCommand extends Command{
-    public AddCommand(Model engine) {
-        super(engine);
+public class InsertCommand extends Command {
+    public InsertCommand(Model model) {
+        super(model);
     }
 
     @Override
     public void execute() throws IOException, NumberFormatException {
-        int id = (int)(System.currentTimeMillis() % Integer.MAX_VALUE);
+        int id = ioManager.idReader("Введите id:");
+        for (Dragon dragon : collectionWork.getCollection().values()) {
+            while (dragon.getId() == id) {
+                System.out.println("Элемент с таким id уже существует");
+                id = ioManager.idReader("Введите id:");
+            }
+        }
 
         String name = ioManager.StringReader("Введите имя:");
 
@@ -22,16 +29,16 @@ public class AddCommand extends Command{
 
         ZonedDateTime creationDate = ZonedDateTime.now();
 
-        Color сolor = ioManager.ColorReader("Введите цвет дракона: {GREEN, " + "RED, " + "BLACK, " + "YELLOW, " + "BROWN;}");
+        Color сolor = ioManager.ColorReader("Введите цвет дракона: {GREEN, " + "RED, " + "YELLOW;}");
         DragonCharacter character = ioManager.CharacterReader("Введите характер дракона: {CUNNING," + "GOOD," + "FICKLE;}");
-        DragonType type = ioManager.TypeReader("Введите тип дракона: {UNDERGROUND," + "AIR," + "WATER," +"FIRE;}");
+        DragonType type = ioManager.TypeReader("Введите тип дракона: {UNDERGROUND," + "AIR," + "WATER," + "FIRE;}");
 
         double treasures = ioManager.DoubleReader("Введите количество сокровищ(>0):");
         DragonCave cave = new DragonCave(treasures);
 
-        Coordinates coordinates = new Coordinates(x,y);
-        Dragon p = new Dragon(id,name, coordinates,creationDate,age,сolor,type,character,cave);
-        collection.add(p);
+        Coordinates coordinates = new Coordinates(x, y);
+        Dragon p = new Dragon(id, name, coordinates, creationDate, age, сolor, type, character, cave);
+        collectionWork.add(p);
         ioManager.writeLine("Object was added: " + p.toString());
     }
 

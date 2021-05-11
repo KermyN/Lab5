@@ -2,14 +2,16 @@ package com.KermyN.Lab5.collections;
 
 import javax.xml.bind.annotation.*;
 
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.PROPERTY)
 
 /*
  * Класс для координат дракона
  */
-
+@XmlRootElement
 public class Coordinates {
+    @XmlElement
     private Integer x; //Поле не может быть null
+    @XmlElement
     private long y;
 
     Coordinates() {}
@@ -35,4 +37,5 @@ public class Coordinates {
     public int hashCode() {
         return getX() + (int) getY();
     }
+
 }

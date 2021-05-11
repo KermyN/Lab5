@@ -4,9 +4,8 @@ import javax.xml.bind.annotation.*;
 import java.time.ZonedDateTime;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-
+@XmlRootElement
 public class Dragon {
-    @XmlElement
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     @XmlElement
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -82,12 +81,13 @@ public class Dragon {
         return ZonedDateTime.now();
     }
 
-    public void setId(int ID) {
-        this.id = ID;
+    public Integer setId() {
+        this.id = getRandNumber(10,100000);
+        return id;
     }
 
-    public void setCreationDate(ZonedDateTime creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationDate() {
+        this.creationDate = creationDate.now();
         this.dateTimeString = creationDate.toString();
     }
 

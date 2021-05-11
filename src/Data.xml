@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Dragons>
 	<Dragon>
-		<id>1</id>
 		<name>Bulbazavr</name>
 		<coordinates>
 			<x>2</x>
@@ -17,7 +16,6 @@
 		</cave>
 	</Dragon>
 	<Dragon>
-		<id>2</id>
 		<name>T-Rex</name>
 		<coordinates>
 			<x>35</x>
@@ -33,7 +31,6 @@
 		</cave>
 	</Dragon>
 	<Dragon>
-		<id>3</id>
 		<name>Bulbazavro</name>
 		<coordinates>
 			<x>2</x>
