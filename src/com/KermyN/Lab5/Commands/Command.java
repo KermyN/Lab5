@@ -3,7 +3,7 @@ package com.KermyN.Lab5.Commands;
 import com.KermyN.Lab5.Model;
 import com.KermyN.Lab5.IOManager;
 import com.KermyN.Lab5.collections.*;
-import com.KermyN.Lab5.collections.Dragon;
+
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 /**
@@ -12,12 +12,14 @@ import java.io.IOException;
 public abstract class Command {
     protected final Model model;
     protected final IOManager ioManager;
-    protected final Dragons collection;
+    protected final CollectionWork collectionWork;
+    protected final Dragons parsing;
 
     public Command(Model model) {
         this.model = model;
         this.ioManager = model.getIOManager();
-        this.collection = model.getCollection();
+        this.collectionWork = model.getCollectionWork();
+        this.parsing=model.getParser();
     }
     /**
      * метод, который непорседственно выполняет команду

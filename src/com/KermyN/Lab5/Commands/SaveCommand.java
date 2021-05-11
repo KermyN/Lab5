@@ -7,7 +7,7 @@ public class SaveCommand extends Command{
     }
     @Override
     public void execute(){
-        collection.save();
+        parsing.save();
         ioManager.writeLine("Коллекция успешно сохранена");
     }
 

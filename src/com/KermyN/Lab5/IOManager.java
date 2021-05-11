@@ -25,6 +25,10 @@ public class IOManager {
     }
 
     public void write(String s) {
+        System.out.println(s);
+    }
+
+    public void writeFile(String s){
         try {
             FileWriter.write(s);
             FileWriter.flush();
@@ -37,6 +41,16 @@ public class IOManager {
         write(s + "\n");
     }
 
+    public int idReader(String question)throws NumberFormatException, IOException{
+        writeLine(question);
+        String value = read();
+        while (value.trim().isEmpty() || !IsDigit.isInteger(value)  || !(Integer.parseInt(value) > 0)) {
+            writeLine("Invalid value");
+            writeLine(question);
+            value = read();
+        }
+        return Integer.valueOf(value);
+    }
     public String readNext() {
         StringBuilder stringBuilder = new StringBuilder();
         while (true) {

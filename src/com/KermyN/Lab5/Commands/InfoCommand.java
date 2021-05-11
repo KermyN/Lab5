@@ -6,9 +6,9 @@ public class InfoCommand extends Command{
     }
     @Override
     public void execute() {
-        ioManager.writeLine("Тип коллекции: " + collection.getClass());
-        ioManager.writeLine("Дата инициализации: " + collection.getInitializationDate());
-        ioManager.writeLine("Количество элементов: " + collection.getSize());
+        ioManager.writeLine("Тип коллекции: " + collectionWork.getClass());
+        ioManager.writeLine("Дата инициализации: " + collectionWork.getInitializationDate());
+        ioManager.writeLine("Количество элементов: " + collectionWork.getSize());
     }
 
     @Override
