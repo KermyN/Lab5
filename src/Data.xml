@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Dragons>
 	<Dragon>
-		<id>1</id>
 		<name>Bulbazavr</name>
 		<coordinates>
 			<x>2</x>
 			<y>-2</y>
 		</coordinates>
-		<creationDate>09-11-2001T13:45:45</creationDate>
 		<age>100500</age>
+		<creationDate>09-11-2001T13:45:45</creationDate>
 		<color>RED</color>
 		<type>WATER</type>
 		<character>GOOD</character>
@@ -17,14 +16,13 @@
 		</cave>
 	</Dragon>
 	<Dragon>
-		<id>2</id>
 		<name>T-Rex</name>
 		<coordinates>
 			<x>35</x>
 			<y>23</y>
 		</coordinates>
-		<creationDate>09-11-2001T13:45:45</creationDate>
 		<age>10</age>
+		<creationDate>09-11-2001T13:45:45</creationDate>
 		<color>YELLOW</color>
 		<type>AIR</type>
 		<character>FICKLE</character>
@@ -33,14 +31,13 @@
 		</cave>
 	</Dragon>
 	<Dragon>
-		<id>3</id>
 		<name>Bulbazavro</name>
 		<coordinates>
 			<x>2</x>
 			<y>-2</y>
 		</coordinates>
-		<creationDate>09-11-2001T13:45:45</creationDate>
 		<age>100500</age>
+		<creationDate>09-11-2001T13:45:45</creationDate>
 		<color>RED</color>
 		<type>WATER</type>
 		<character>GOOD</character>

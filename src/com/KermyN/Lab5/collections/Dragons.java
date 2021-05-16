@@ -3,76 +3,88 @@ package com.KermyN.Lab5.collections;
 import javax.xml.bind.annotation.*;
 import java.io.*;
 import java.util.Hashtable;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.UnmarshalException;
-import javax.xml.bind.Unmarshaller;
 import java.time.ZonedDateTime;
 import java.io.File;
-import java.util.Iterator;
+import javax.xml.bind.*;
+import java.io.StringWriter;
+import java.util.*;
 
-@XmlRootElement
+@XmlRootElement(name = "Dragons")
 @XmlAccessorType(XmlAccessType.NONE)
-public class Dragons {
+public class Dragons{
     @XmlElement(name = "Dragon")
-    public static Hashtable<Integer, Dragon> dragonCollection = new Hashtable<Integer, Dragon>();
-    private final ZonedDateTime creationDate;
+    public static LinkedList<Dragon> InputCollection = new LinkedList<>();
 
-    public Dragons() {
-        creationDate = ZonedDateTime.now();
-    }
 
-    public static Hashtable<Integer, Dragon> getCollection() {
-        return dragonCollection;
-    }
-
-    Dragons dragons;
-
-    public void uploadData(String path){
+    public Dragons uploadData(String path) {
         try {
-            System.out.println(ZonedDateTime.now());
             File file = new File(path);
-            FileInputStream fs = new FileInputStream(file);
+            FileInputStream inputFile = new FileInputStream(file);
             JAXBContext context = JAXBContext.newInstance(Dragons.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            dragons = (Dragons) unmarshaller.unmarshal(fs);
+            Dragons dragons = (Dragons) unmarshaller.unmarshal(inputFile);
+            return dragons;
         } catch (UnmarshalException e) {
             System.out.println("Invalid file");
+            e.printStackTrace();
             System.exit(0);
         } catch (JAXBException et) {
             et.printStackTrace();
         } catch (FileNotFoundException et) {
             et.printStackTrace();
-        } finally {
-            DataCheck("Data.xml");
-            System.out.println(dragonCollection.toString());
-
         }
+        try {
+            System.out.println(InputCollection.isEmpty());
+            DataCheck();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    public void DataCheck(String filename){
-        for(Dragon dragon: dragonCollection.values()){
-            if(!(dragon.getCreationDate() == null) || (dragon.getName() == null) || (dragon.getName() == "") || dragon.getAge() < 0
-                    || dragon.getCharacter() == null || dragon.getColor() == null || dragon.getType() == null || dragon.getCoordinates().getX() ==null
-                    || dragon.getCoordinates().getY() > 404|| dragon.getCave().getNumberOfTreasures()<0){
+
+    public CollectionWork getCollectionWorker(){
+        CollectionWork collectionWork = new CollectionWork();
+        collectionWork.dataUpdate(InputCollection);
+       // System.out.println(InputCollection);
+        InputCollection.clear();
+        return collectionWork;
+    }
+    public void DataCheck() {
+        for (Dragon dragon : InputCollection) {
+            if (!(dragon.getCreationDate() == null) || (dragon.getName() == null) || (dragon.getName() == "") || dragon.getAge() < 0
+                    || dragon.getCharacter() == null || dragon.getColor() == null || dragon.getType() == null || dragon.getCoordinates().getX() == null
+                    || dragon.getCoordinates().getY() > 404 || dragon.getCave().getNumberOfTreasures() < 0) {
                 System.out.println("Неккоректные значения в файле");
                 System.exit(0);
             }
+            dragon.setId();
+            System.out.println(dragon.toString());
         }
     }
+
     /**
-     * Очистка коллекции
+     * Сохраняет коллекцию в xml файл
      */
-    public void clear() {
-        dragonCollection.clear();
+    public void save(){
+        StringWriter sw = new StringWriter();
+        InputCollection.clear();
+        InputCollection =getCollectionWorker().dataOutdate();
+        System.out.println(InputCollection);
+        File f = new File("NewData.xml");
+        f.delete();
+        try {
+            Dragons dragons = new Dragons();
+            JAXBContext context = JAXBContext.newInstance(Dragons.class);
+            Marshaller jaxbMarshaller = context.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            jaxbMarshaller.marshal(dragons, new File("NewData.xml"));
+            jaxbMarshaller.marshal(dragons, sw);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
+
+
+
+
 }
-
-
-
-/*@Override
-public String toString()
-{
-    //return
-}
-
- */
