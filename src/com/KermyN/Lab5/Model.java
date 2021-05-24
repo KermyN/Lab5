@@ -28,6 +28,10 @@ public class Model {
         registerCommand(new ExecuteScriptCommand(this));
         registerCommand(new ClearCommand(this));
         registerCommand(new ExitCommand(this));
+        registerCommand(new RemoveByKeyCommand(this));
+        registerCommand(new UpdateCommand(this));
+        registerCommand(new RemoveIfGreaterCommand(this));
+        registerCommand(new MinByCaveCommand(this));
     }
 
     /**

@@ -16,7 +16,7 @@ public class IOManager {
     public IOManager() throws IOException{
        // try {
             inputStreamReader = new InputStreamReader(System.in);
-            FileWriter = new FileWriter("NewData.xml");
+            FileWriter = new FileWriter("log.txt");
         //}
        // catch(IOException e){
            // e.printStackTrace();

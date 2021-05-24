@@ -49,6 +49,6 @@ public class InsertCommand extends Command {
 
     @Override
     public String getName() {
-        return "add";
+        return "insert";
     }
 }
