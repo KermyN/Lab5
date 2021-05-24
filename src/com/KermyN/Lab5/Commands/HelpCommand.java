@@ -8,7 +8,7 @@ public class HelpCommand extends Command{
     @Override
     public void execute(){
         for (Command command : model.getAllCommands()) {
-            ioManager.writeFile(command.getName() + " ");
+            ioManager.writeLine(command.getName() + " ");
             ioManager.writeLine(command.getDescription());
         }
     }

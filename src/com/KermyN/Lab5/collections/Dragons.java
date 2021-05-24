@@ -23,6 +23,7 @@ public class Dragons{
             JAXBContext context = JAXBContext.newInstance(Dragons.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             Dragons dragons = (Dragons) unmarshaller.unmarshal(inputFile);
+            DataCheck();
             return dragons;
         } catch (UnmarshalException e) {
             System.out.println("Invalid file");
@@ -35,7 +36,7 @@ public class Dragons{
         }
         try {
             System.out.println(InputCollection.isEmpty());
-            DataCheck();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,13 +46,11 @@ public class Dragons{
     public CollectionWork getCollectionWorker(){
         CollectionWork collectionWork = new CollectionWork();
         collectionWork.dataUpdate(InputCollection);
-       // System.out.println(InputCollection);
-        InputCollection.clear();
         return collectionWork;
     }
     public void DataCheck() {
         for (Dragon dragon : InputCollection) {
-            if (!(dragon.getCreationDate() == null) || (dragon.getName() == null) || (dragon.getName() == "") || dragon.getAge() < 0
+            if ((dragon.getName() == null) || (dragon.getName() == "") || dragon.getAge() < 0
                     || dragon.getCharacter() == null || dragon.getColor() == null || dragon.getType() == null || dragon.getCoordinates().getX() == null
                     || dragon.getCoordinates().getY() > 404 || dragon.getCave().getNumberOfTreasures() < 0) {
                 System.out.println("Неккоректные значения в файле");
@@ -67,11 +66,8 @@ public class Dragons{
      */
     public void save(){
         StringWriter sw = new StringWriter();
-        InputCollection.clear();
         InputCollection =getCollectionWorker().dataOutdate();
         System.out.println(InputCollection);
-        File f = new File("NewData.xml");
-        f.delete();
         try {
             Dragons dragons = new Dragons();
             JAXBContext context = JAXBContext.newInstance(Dragons.class);
@@ -79,9 +75,8 @@ public class Dragons{
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             jaxbMarshaller.marshal(dragons, new File("NewData.xml"));
             jaxbMarshaller.marshal(dragons, sw);
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
+        } catch (JAXBException e){e.printStackTrace();}
+
     }
 
 

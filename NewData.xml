@@ -1,56 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Dragons>
     <Dragon>
-        <id>32</id>
-        <name>Ewq</name>
-        <coordinates>
-            <x>52</x>
-            <y>42</y>
-        </coordinates>
-        <age>32</age>
-        <color>RED</color>
-        <type>AIR</type>
-        <character>CUNNING</character>
-        <cave>
-            <numberOfTreasures>3.0</numberOfTreasures>
-        </cave>
-    </Dragon>
-    <Dragon>
-        <id>84387</id>
-        <name>Bulbazavro</name>
-        <creationDate>2021-05-11T23:37:32.577+03:00[Europe/Moscow]</creationDate>
-        <coordinates>
-            <x>2</x>
-            <y>-2</y>
-        </coordinates>
-        <age>100500</age>
-        <color>RED</color>
-        <type>WATER</type>
-        <character>GOOD</character>
-        <cave>
-            <numberOfTreasures>12.0</numberOfTreasures>
-        </cave>
-    </Dragon>
-    <Dragon>
-        <id>32203</id>
-        <name>Bulbazavr</name>
-        <creationDate>2021-05-11T23:37:32.577+03:00[Europe/Moscow]</creationDate>
-        <coordinates>
-            <x>2</x>
-            <y>-2</y>
-        </coordinates>
-        <age>100500</age>
-        <color>RED</color>
-        <type>WATER</type>
-        <character>GOOD</character>
-        <cave>
-            <numberOfTreasures>12.0</numberOfTreasures>
-        </cave>
-    </Dragon>
-    <Dragon>
-        <id>94955</id>
+        <id>66486</id>
         <name>T-Rex</name>
-        <creationDate>2021-05-11T23:37:32.577+03:00[Europe/Moscow]</creationDate>
+        <creationDate>2021-05-24T14:08:31.747+03:00[Europe/Moscow]</creationDate>
         <coordinates>
             <x>35</x>
             <y>23</y>
@@ -61,6 +14,38 @@
         <character>FICKLE</character>
         <cave>
             <numberOfTreasures>1.0</numberOfTreasures>
+        </cave>
+    </Dragon>
+    <Dragon>
+        <id>10793</id>
+        <name>Bulbazavr</name>
+        <creationDate>2021-05-24T14:08:31.747+03:00[Europe/Moscow]</creationDate>
+        <coordinates>
+            <x>2</x>
+            <y>-2</y>
+        </coordinates>
+        <age>100500</age>
+        <color>RED</color>
+        <type>WATER</type>
+        <character>GOOD</character>
+        <cave>
+            <numberOfTreasures>12.0</numberOfTreasures>
+        </cave>
+    </Dragon>
+    <Dragon>
+        <id>40293</id>
+        <name>Bulbazavro</name>
+        <creationDate>2021-05-24T14:08:31.747+03:00[Europe/Moscow]</creationDate>
+        <coordinates>
+            <x>2</x>
+            <y>-2</y>
+        </coordinates>
+        <age>100500</age>
+        <color>RED</color>
+        <type>WATER</type>
+        <character>GOOD</character>
+        <cave>
+            <numberOfTreasures>12.0</numberOfTreasures>
         </cave>
     </Dragon>
 </Dragons>
