@@ -13,73 +13,223 @@ import java.util.*;
 @XmlAccessorType(XmlAccessType.NONE)
 public class Dragons{
     @XmlElement(name = "Dragon")
-    public static LinkedList<Dragon> InputCollection = new LinkedList<>();
+    public static ArrayList<Dragon> IOCollection = new ArrayList<>();
+    protected Hashtable<Integer, Dragon> dragonHashtable = new Hashtable<>();
+    private final ZonedDateTime creationDate;
+    public Dragons() {
+        creationDate = ZonedDateTime.now();
+    }
 
+Dragons dragons;
 
-    public Dragons uploadData(String path) {
+    /**
+     * Upload collection from xml-file
+     * @param path path to xml file
+     */
+    public void uploadData(String path) {
         try {
             File file = new File(path);
             FileInputStream inputFile = new FileInputStream(file);
             JAXBContext context = JAXBContext.newInstance(Dragons.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            Dragons dragons = (Dragons) unmarshaller.unmarshal(inputFile);
+            dragons = (Dragons) unmarshaller.unmarshal(inputFile);
             DataCheck();
-            return dragons;
         } catch (UnmarshalException e) {
             System.out.println("Invalid file");
-            e.printStackTrace();
             System.exit(0);
-        } catch (JAXBException et) {
-            et.printStackTrace();
+        }
+        catch (JAXBException et) {
+            System.out.println("Parsing Error");
+            System.exit(0);
         } catch (FileNotFoundException et) {
-            et.printStackTrace();
+            System.out.println("No File");
+            System.exit(0);
         }
-        try {
-            System.out.println(InputCollection.isEmpty());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
-    public CollectionWork getCollectionWorker(){
-        CollectionWork collectionWork = new CollectionWork();
-        collectionWork.dataUpdate(InputCollection);
-        return collectionWork;
+    public Dragons getDragons(){
+        Dragons dragons = new Dragons();
+        dragons.dataUpdate();
+        return dragons;
     }
     public void DataCheck() {
-        for (Dragon dragon : InputCollection) {
-            if ((dragon.getName() == null) || (dragon.getName() == "") || dragon.getAge() < 0
+        for (Dragon dragon : IOCollection) {
+            if ((dragon.getName() == null) || (dragon.getName().equals("")) || dragon.getAge() < 0
                     || dragon.getCharacter() == null || dragon.getColor() == null || dragon.getType() == null || dragon.getCoordinates().getX() == null
                     || dragon.getCoordinates().getY() > 404 || dragon.getCave().getNumberOfTreasures() < 0) {
                 System.out.println("Неккоректные значения в файле");
                 System.exit(0);
             }
             dragon.setId();
-            System.out.println(dragon.toString());
         }
     }
 
     /**
-     * Сохраняет коллекцию в xml файл
+     * Save collection to xml-flie
      */
     public void save(){
         StringWriter sw = new StringWriter();
-        InputCollection =getCollectionWorker().dataOutdate();
-        System.out.println(InputCollection);
+        System.out.println("s"+dragonHashtable);
+        IOCollection=dataOutdate();
+        System.out.println("s"+IOCollection);
         try {
             Dragons dragons = new Dragons();
             JAXBContext context = JAXBContext.newInstance(Dragons.class);
             Marshaller jaxbMarshaller = context.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            jaxbMarshaller.marshal(dragons, new File("NewData.xml"));
+            jaxbMarshaller.marshal(dragons, new File("Data.xml"));
             jaxbMarshaller.marshal(dragons, sw);
-        } catch (JAXBException e){e.printStackTrace();}
+        } catch (JAXBException e){
+            System.out.println("Saving Error");}
 
     }
 
 
+    public Hashtable<Integer, Dragon> getCollection() { return dragonHashtable; }
+
+    public void dataUpdate(){
+        for (Dragon dragon: IOCollection){
+            dragon.setId();
+            dragon.setCreationDate();
+            this.dragonHashtable.put(dragon.setId(), dragon);
+        }
+        IOCollection.clear();
+    }
+
+    public ArrayList<Dragon> dataOutdate(){
+        ArrayList<Dragon> outList = new ArrayList<>();
+        outList.addAll(dragonHashtable.values());
+        return outList;
+    }
+    /**
+     * Clear entire collection
+     */
+    public void clear() { dragonHashtable.clear();}
 
 
+
+    /**
+     * Add dragon to collection
+     */
+    public void add(Dragon element) { dragonHashtable.put(element.getId(),element);}
+
+    /**
+     * Get dragon by ID
+     */
+    public Dragon get(int id) {
+        for (Dragon element : dragonHashtable.values()) {
+            if (element.getId() == id) {
+                return element;
+            }
+        }
+        return null;
+    }
+    /**
+     * Remove elements with lower ID
+     */
+    public void removeLower(int id) {
+        Dragon dragon = dragonHashtable.get(id);
+        Dragon drag;
+        for (Iterator<Dragon> iter = dragonHashtable.values().iterator(); iter.hasNext(); ) {
+            drag = iter.next();
+            if (dragon.getId() > drag.getId())
+                iter.remove();
+        }
+    }
+    /**
+     * Remove elements with greater ID
+     */
+
+    public void removeGreater(int id) {
+        Dragon dragon = dragonHashtable.get(id);
+        Dragon drag;
+        for (Iterator<Dragon> iter = dragonHashtable.values().iterator(); iter.hasNext(); ) {
+            drag = iter.next();
+            if (dragon.getId() < drag.getId())
+                iter.remove();
+        }
+    }
+
+    /**
+     * Remove element by ID
+     */
+    public void remove(int key) {
+        Dragon element = get(key);
+        Dragon drag;
+        for (Iterator<Dragon> iter = dragonHashtable.values().iterator(); iter.hasNext(); ) {
+            drag = iter.next();
+            if (element.getId() == drag.getId())
+                iter.remove();
+        }
+    }
+
+    @Override
+    public String toString() {
+        for (Dragon dragon : dragonHashtable.values()) {
+            return "\nDragon{" +
+                    "id=" + dragon.getId() +
+                    ", name='" + dragon.getName() + '\'' +
+                    ", age=" + dragon.getAge() +
+                    ", coordinates='" + dragon.getCoordinates() + '\'' +
+                    ", color='" + dragon.getColor() + '\'' +
+                    ", type='" + dragon.getType() + '\'' +
+                    ", character='" + dragon.getCharacter() + '\'' +
+                    ", cave='" + dragon.getCave() + '\'' +
+                    ", creationDate='" + dragon.getCreationDate() + '\'' +
+                    '}';
+        }
+
+        return null;//getCollection().toString();
+    }
+
+    public ZonedDateTime getInitializationDate() {
+        return creationDate;
+    }
+
+    /**
+     * return collection size
+     */
+    public int getSize() {
+        return dragonHashtable.size();
+    }
+
+    /**
+     * Return dragon with minimal amount of treasures
+     */
+
+    public Dragon minCave(){
+        Double cave= Double.MAX_VALUE;
+        Dragon minCave = null;
+        for(Dragon dragon : dragonHashtable.values()) {
+            if(dragon.getCave().getNumberOfTreasures()<cave) {cave = dragon.getCave().getNumberOfTreasures();minCave=dragon;}
+        }
+        if(cave== Double.MAX_VALUE){System.out.println("коллекция пустая"); return null;}
+        else return minCave;
+    }
+    /**
+     * Count dragon with exact color
+     */
+    public int ColorCounter(Color color){
+        int count = 0;
+        for (Dragon dragon : dragonHashtable.values()) {
+            if (dragon.getColor().equals(color)){
+                count = count + 1;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * находит всех драконов, чьё имя содержит подстроку
+     */
+
+    public String subStringSearcher(String subString){
+        StringBuilder box = new StringBuilder();
+        for (Dragon dragon : dragonHashtable.values()) {
+            if (dragon.getName().contains(subString)){
+                box.append(dragon.toString()).append("\n");
+            }
+        }
+        return box.toString();
+    }
 }

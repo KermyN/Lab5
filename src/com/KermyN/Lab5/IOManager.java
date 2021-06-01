@@ -1,7 +1,6 @@
 package com.KermyN.Lab5;
 
 import com.KermyN.Lab5.collections.Color;
-import com.KermyN.Lab5.collections.DragonCave;
 import com.KermyN.Lab5.collections.DragonCharacter;
 import com.KermyN.Lab5.collections.DragonType;
 
@@ -25,7 +24,7 @@ public class IOManager {
     }
 
     public void write(String s) {
-        System.out.println(s);
+        System.out.print(s);
     }
 
     public void writeFile(String s){
@@ -49,22 +48,22 @@ public class IOManager {
             writeLine(question);
             value = read();
         }
-        return Integer.valueOf(value);
+        return Integer.parseInt(value);
     }
     public String readNext() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder newString = new StringBuilder();
         while (true) {
             try {
                 if (!inputStreamReader.ready()) break;
                 char c = (char)inputStreamReader.read();
                 if (c == '\n'){break;}
-                if (stringBuilder.length() != 0 && Character.isWhitespace(c)) break;
-                stringBuilder.append(c);
+                if (newString.length() != 0 && Character.isWhitespace(c)) break;
+                newString.append(c);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return stringBuilder.toString();
+        return newString.toString();
     }
 
     public String read() throws IOException {
@@ -85,7 +84,7 @@ public class IOManager {
     }
 
     /**
-     * Метод для чтениния вводимых чисел типа Integer
+     * Method reading Integers
      */
     public Integer IntegerReader(String question) throws NumberFormatException, IOException {
         writeLine(question);
@@ -99,36 +98,7 @@ public class IOManager {
     }
 
     /**
-     * Метод для чтениния вводимых чисел типа Float
-     * @param maxValue максимальное значение, которое может ввести пользователь
-     */
-    public Float FloatReader(String question, Float maxValue) throws NumberFormatException, IOException {
-        writeLine(question);
-        String value = read();
-        while (value.trim().isEmpty() || !isFloat(value) || (Float.parseFloat(value) > maxValue)) {
-            writeLine("Invalid value");
-            writeLine(question);
-            value = read();
-        }
-        return Float.valueOf(value);
-    }
-
-    /**
-     * Метод для чтениния вводимых чисел типа Float
-     */
-    public Float FloatReader(String question) throws NumberFormatException, IOException {
-        writeLine(question);
-        String value = read();
-        while (value.trim().isEmpty() || !isFloat(value)) {
-            writeLine("Invalid value");
-            writeLine(question);
-            value = read();
-        }
-        return Float.valueOf(value);
-    }
-
-    /**
-     * Метод для чтениния вводимых чисел типа Double
+     * Method reading Doubles
      */
     public Double DoubleReader(String question) throws NumberFormatException, IOException {
         writeLine(question);
@@ -142,12 +112,12 @@ public class IOManager {
     }
 
     /**
-     * Метод для чтениния вводимых чисел типа Long
+     * Method reading Longs
      */
     public Long LongReader(String question) throws NumberFormatException, IOException {
         writeLine(question);
         String value = read();
-        while (value.trim().isEmpty() || !isFloat(value) || !(Long.parseLong(value) > 0)) {
+        while (value.trim().isEmpty() || !isFloat(value) || !(Long.parseLong(value) > 0)|| !(Long.parseLong(value) < 404)) {
             writeLine("Invalid value");
             writeLine(question);
             value = read();
@@ -156,7 +126,7 @@ public class IOManager {
     }
 
     /**
-     * Метод для чтениния вводимых данных типа Color
+     * Method reading Colors
      */
     public Color ColorReader(String question) throws IllegalArgumentException,IOException{
         writeLine(question);
@@ -170,7 +140,7 @@ public class IOManager {
     }
 
     /**
-     * Метод для чтениния вводимых данных типа DragonCharacter
+     * Method reading Dragon characters
      */
     public DragonCharacter CharacterReader(String question) throws IllegalArgumentException,IOException{
         writeLine(question);
@@ -183,7 +153,7 @@ public class IOManager {
         return DragonCharacter.valueOf(value);
     }
     /**
-     * Метод для чтениния вводимых данных типа Color
+     * Method reading Dragon types
      */
     public DragonType TypeReader(String question) throws IllegalArgumentException,IOException{
         writeLine(question);

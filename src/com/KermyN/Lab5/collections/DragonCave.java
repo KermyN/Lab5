@@ -19,7 +19,7 @@ public DragonCave(double numberOfTreasures){
 
 @Override
 public String toString(){
-        return "Количество сокровищ = "+ numberOfTreasures;
+        return "number of treasures = "+ numberOfTreasures;
 }
     public double getNumberOfTreasures() {
         return numberOfTreasures;

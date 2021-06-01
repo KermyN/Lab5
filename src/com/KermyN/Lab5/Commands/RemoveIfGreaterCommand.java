@@ -11,17 +11,13 @@ public class RemoveIfGreaterCommand extends Command{
 
     @Override
     public void execute() throws IOException, NumberFormatException{
-
-        Dragon dragon  = collectionWork.get(ioManager.IntegerReader("Введите ключ:"));
-        while(dragon==null){dragon = collectionWork.get(ioManager.IntegerReader("Такого элемента нет. Введите ключ:"));}
-        for(Dragon dragons : collectionWork.getCollection().values())
-        {if (dragons.getId() > dragon.getId()) System.out.println(dragons.getName()+" удален");collectionWork.remove(dragons.getId());}
-
+        Dragon currentDragon = dragons.get(ioManager.IntegerReader("Enter key:"));
+        dragons.removeGreater(currentDragon.getId());
     }
 
     @Override
     public String getDescription() {
-        return ":Удалить элементы с большим ключем чем у заданного";
+        return ":Удалить элементы с большим ключем чем у данного";
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.KermyN.Lab5;
 
 import javax.xml.bind.JAXBException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -9,8 +8,15 @@ import java.io.IOException;
  */
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException, IOException, JAXBException {
-        Model manipulator = new Model("D:/ITMO/Proga/Lab5/src/Data.xml");
+    public static void main(String[] args) throws IOException, JAXBException {
+        Model manipulator = new Model();
+        try {
+            manipulator.uploadFile(String.valueOf(args[0]));
+        }catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Incorrect launch");
+            System.exit(0);
+        }
         manipulator.run();
     }
 }

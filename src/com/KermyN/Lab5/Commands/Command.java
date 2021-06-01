@@ -12,14 +12,12 @@ import java.io.IOException;
 public abstract class Command {
     protected final Model model;
     protected final IOManager ioManager;
-    protected final CollectionWork collectionWork;
-    protected final Dragons parsing;
+    protected final Dragons dragons;
 
     public Command(Model model) {
         this.model = model;
         this.ioManager = model.getIOManager();
-        this.collectionWork = model.getCollectionWork();
-        this.parsing=model.getParser();
+        this.dragons =model.getDragons();
     }
     /**
      * метод, который непорседственно выполняет команду
