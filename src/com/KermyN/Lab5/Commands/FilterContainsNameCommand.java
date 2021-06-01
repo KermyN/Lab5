@@ -22,6 +22,6 @@ public class FilterContainsNameCommand extends Command{
 
     @Override
     public String getName() {
-        return "count_by_color";
+        return "filter_contains_name";
     }
 }

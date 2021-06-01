@@ -7,7 +7,7 @@ import com.KermyN.Lab5.collections.*;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 /**
- * Класс - заготовка для команд, определяет их поведение
+ * Abstract class defining behavior of commands
  */
 public abstract class Command {
     protected final Model model;
@@ -20,15 +20,15 @@ public abstract class Command {
         this.dragons =model.getDragons();
     }
     /**
-     * метод, который непорседственно выполняет команду
+     * Method executing command
      */
     public abstract void execute() throws IOException, JAXBException;
     /**
-     * метод, возвращающий описание команды
+     * Return description of command
      */
     public abstract String getDescription();
     /**
-     * метод, возвращающий имя команды
+     * Return name of command
      */
     public abstract String getName();
 }

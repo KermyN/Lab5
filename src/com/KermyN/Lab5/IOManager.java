@@ -71,7 +71,9 @@ public class IOManager {
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader); // экземпляр класса буферизации
         return bufferedReader.readLine();
     }
-
+    /**
+     * Method reading Strings
+     */
     public String StringReader(String question) throws IOException {
         writeLine(question);
         String value = read();
