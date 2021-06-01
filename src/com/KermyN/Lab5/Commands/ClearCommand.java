@@ -6,7 +6,7 @@ public class ClearCommand extends Command{
     }
     @Override
     public void execute() {
-        collectionWork.clear();
+        dragons.clear();
         ioManager.writeLine("Коллекция очищена.");
     }
 

@@ -13,8 +13,9 @@ public class InsertCommand extends Command {
 
     @Override
     public void execute() throws IOException, NumberFormatException {
-        int id = ioManager.idReader("Введите id:");
-        for (Dragon dragon : collectionWork.getCollection().values()) {
+        //int id = ioManager.idReader("Введите id:");
+        int id = Math.toIntExact(System.currentTimeMillis()% Integer.MAX_VALUE);
+        for (Dragon dragon : dragons.getCollection().values()) {
             while (dragon.getId() == id) {
                 System.out.println("Элемент с таким id уже существует");
                 id = ioManager.idReader("Введите id:");
@@ -29,7 +30,7 @@ public class InsertCommand extends Command {
 
         ZonedDateTime creationDate = ZonedDateTime.now();
 
-        Color сolor = ioManager.ColorReader("Введите цвет дракона: {GREEN, " + "RED, " + "YELLOW;}");
+        Color color = ioManager.ColorReader("Введите цвет дракона: {GREEN, " + "RED, " + "YELLOW;}");
         DragonCharacter character = ioManager.CharacterReader("Введите характер дракона: {CUNNING," + "GOOD," + "FICKLE;}");
         DragonType type = ioManager.TypeReader("Введите тип дракона: {UNDERGROUND," + "AIR," + "WATER," + "FIRE;}");
 
@@ -37,18 +38,18 @@ public class InsertCommand extends Command {
         DragonCave cave = new DragonCave(treasures);
 
         Coordinates coordinates = new Coordinates(x, y);
-        Dragon p = new Dragon(id, name, coordinates, creationDate, age, сolor, type, character, cave);
-        collectionWork.add(p);
+        Dragon p = new Dragon(id, name, coordinates, creationDate, age, color, type, character, cave);
+        dragons.add(p);
         ioManager.writeLine("Object was added: " + p.toString());
     }
 
     @Override
     public String getDescription() {
-        return ":добавить новый элемент в коллекцию";
+        return ":добавить новый элемент с заданным ключом";
     }
 
     @Override
     public String getName() {
-        return "add";
+        return "insert";
     }
 }

@@ -87,7 +87,7 @@ public class Dragon {
     }
 
     public void setCreationDate() {
-        this.creationDate = creationDate.now();
+        this.creationDate = ZonedDateTime.now();
         this.dateTimeString = creationDate.toString();
     }
 
@@ -103,6 +103,6 @@ public class Dragon {
                 ", character='" + getCharacter() + '\'' +
                 ", cave='" + getCave() + '\'' +
                 ", creationDate='" + getCreationDate() + '\'' +
-                '}';
+                "}\n";
     }
 }

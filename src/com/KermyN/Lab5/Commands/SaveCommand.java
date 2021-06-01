@@ -7,7 +7,7 @@ public class SaveCommand extends Command{
     }
     @Override
     public void execute(){
-        parsing.save();
+        dragons.save();
         ioManager.writeLine("Коллекция успешно сохранена");
     }
 
