@@ -11,13 +11,13 @@ public class RemoveByKeyCommand extends Command{
     @Override
     public void execute() throws IOException, NumberFormatException{
 
-        int key = ioManager.IntegerReader("Введите ключ:");
-        if(collectionWork.get(key)==null){
-            ioManager.writeLine("Элемент с данным ключём не найден.");
+        int key = ioManager.IntegerReader("Enter key:");
+        if(dragons.get(key)==null){
+            ioManager.writeLine("Element with entered key was not found.");
         }
         else{
-            ioManager.writeLine("Объект "+ collectionWork.get(key).getName() +"удален.");
-            collectionWork.remove(key);
+            ioManager.writeLine("Dragon "+ dragons.get(key).getName() +" has been deleted.");
+            dragons.remove(key);
         }
     }
 

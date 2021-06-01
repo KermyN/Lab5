@@ -13,11 +13,11 @@ public class UpdateCommand extends Command {
     @Override
     public void execute() throws IOException {
         int id = ioManager.IntegerReader("Enter id:");
-        Dragon element = collectionWork.get(id);
+        Dragon element = dragons.get(id);
         if (element == null) {
             ioManager.writeLine("Элемент с данным ключём не найден.");
         } else {
-            collectionWork.remove(id);
+            dragons.remove(id);
             InsertCommand addCommand = new InsertCommand(model);
             addCommand.execute();
         }
